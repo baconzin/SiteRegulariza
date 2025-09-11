@@ -12,6 +12,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </div>
   );
 }
