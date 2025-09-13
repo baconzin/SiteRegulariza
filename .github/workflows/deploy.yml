@@ -2,8 +2,8 @@ name: Build & Deploy to HostGator
 
 on:
   push:
-    branches: [ main, master ]   # funciona se o seu branch principal for main OU master
-  workflow_dispatch:             # permite rodar manualmente
+    branches: [ main, master ]   # roda em main ou master
+  workflow_dispatch:             # permite rodar manual
 
 jobs:
   build-and-deploy:
@@ -28,17 +28,16 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-- name: Deploy via FTP to HostGator
-  uses: SamKirkland/FTP-Deploy-Action@v4.3.5   
-
+      - name: Deploy via FTP to HostGator
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: frontend/build/   # origem (resultado do build)
-          server-dir: /public_html/    # destino no HostGator
+          local-dir: frontend/build/
+          server-dir: /public_html/
           exclude: |
             **/.git*
             **/.github/**
             **/.htaccess
-          dangerous-clean-slate: false # não apaga tudo (preserva seu .htaccess)
+          dangerous-clean-slate: false
