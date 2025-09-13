@@ -2,8 +2,8 @@ name: Build & Deploy to HostGator
 
 on:
   push:
-    branches: [ main, master ]   # roda quando fizer push em main ou master
-  workflow_dispatch:             # permite rodar manualmente pelo Actions
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -16,11 +16,24 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'   # estável e moderno
+
+      - name: Prep npm (estabilidade de rede)
+        run: |
+          npm config set audit false
+          npm config set fund false
+          npm config set fetch-retries 5
+          npm config set fetch-retry-factor 2
+          npm config set fetch-retry-maxtimeout 60000
 
       - name: Install dependencies
         working-directory: frontend
-        run: npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps --no-audit --no-fund
+
+      # >>> PASSO-CHAVE: instala peer deps exigidas pelo webpack/schema-utils
+      - name: Ensure webpack peer deps (ajv & ajv-keywords)
+        working-directory: frontend
+        run: npm install --no-save ajv@^8 ajv-keywords@^5 --legacy-peer-deps
 
       - name: Build React app
         working-directory: frontend
