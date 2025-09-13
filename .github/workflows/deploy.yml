@@ -2,8 +2,8 @@ name: Build & Deploy to HostGator
 
 on:
   push:
-    branches: [ main, master ]   # roda em main ou master
-  workflow_dispatch:             # permite rodar manual
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: frontend
-        run: npm ci
+        run: npm install
 
       - name: Build React app
         working-directory: frontend
