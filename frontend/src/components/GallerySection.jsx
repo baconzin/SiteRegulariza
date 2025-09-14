@@ -1,89 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Card } from "./ui/card";
 import { X, ZoomIn } from "lucide-react";
 
 const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // DICA: troque os nomes de arquivo abaixo pelos seus arquivos em /public/images/
   const galleryImages = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1713022643918-34bb17feb95d?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/rural-1.jpg",
       alt: "Condomínio Rural - Vila Moderna",
       category: "rural",
       title: "Condomínio Rural",
-      description: "Projeto de regularização de condomínio rural com paisagem montanhosa"
+      description: "Projeto de regularização de condomínio rural com paisagem montanhosa",
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1689770256234-ddfd315e3b2b?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/rural-2.jpg",
       alt: "Casa de Campo Regularizada",
       category: "rural",
       title: "Casa de Campo",
-      description: "Residência rural regularizada com sucesso"
+      description: "Residência rural regularizada com sucesso",
     },
     {
       id: 3,
-      src: "https://images.pexels.com/photos/10511470/pexels-photo-10511470.jpeg",
+      src: "/images/rural-3.jpg",
       alt: "Condomínio Rural de Cabanas",
       category: "rural",
       title: "Condomínio de Cabanas",
-      description: "Projeto de regularização de condomínio com estilo cabana"
+      description: "Projeto de regularização de condomínio com estilo cabana",
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1532562145520-b8cce2486cd2?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/urban-1.jpg",
       alt: "Desenvolvimento Urbano Aéreo",
       category: "urban",
       title: "Desenvolvimento Urbano",
-      description: "Vista aérea de desenvolvimento urbano em processo de regularização"
+      description: "Vista aérea de desenvolvimento urbano em processo de regularização",
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1562774207-e20d9ad4b566?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/urban-2.jpg",
       alt: "Edifícios Urbanos",
       category: "urban",
       title: "Condomínio Urbano",
-      description: "Complexo residencial urbano regularizado"
+      description: "Complexo residencial urbano regularizado",
     },
     {
       id: 6,
-      src: "https://images.pexels.com/photos/33816916/pexels-photo-33816916.jpeg",
+      src: "/images/urban-3.jpg",
       alt: "Edifício Moderno",
       category: "urban",
       title: "Edifício Moderno",
-      description: "Projeto de regularização de edifício urbano moderno"
+      description: "Projeto de regularização de edifício urbano moderno",
     },
     {
       id: 7,
-      src: "https://images.unsplash.com/photo-1637763723578-79a4ca9225f7?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/docs-1.jpg",
       alt: "Documentação Legal",
       category: "documentation",
       title: "Documentação Legal",
-      description: "Processo de análise documental para regularização"
+      description: "Processo de análise documental para regularização",
     },
     {
       id: 8,
-      src: "https://images.unsplash.com/photo-1747037941864-74595e4ff56d?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85",
+      src: "/images/docs-2.jpg",
       alt: "Documentos Imobiliários",
       category: "documentation",
       title: "Documentos Imobiliários",
-      description: "Documentação completa para regularização imobiliária"
-    }
+      description: "Documentação completa para regularização imobiliária",
+    },
   ];
 
-  const categories = [
+  // Contadores calculados dinamicamente
+  const categories = useMemo(() => ([
     { id: "all", name: "Todos", count: galleryImages.length },
-    { id: "rural", name: "Condomínios Rurais", count: galleryImages.filter(img => img.category === "rural").length },
-    { id: "urban", name: "Condomínios Urbanos", count: galleryImages.filter(img => img.category === "urban").length },
-    { id: "documentation", name: "Documentação", count: galleryImages.filter(img => img.category === "documentation").length }
-  ];
+    { id: "rural", name: "Condomínios Rurais", count: galleryImages.filter(i => i.category === "rural").length },
+    { id: "urban", name: "Condomínios Urbanos", count: galleryImages.filter(i => i.category === "urban").length },
+    { id: "documentation", name: "Documentação", count: galleryImages.filter(i => i.category === "documentation").length },
+  ]), [galleryImages]);
 
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredImages = activeCategory === "all" 
-    ? galleryImages 
+  const filteredImages = activeCategory === "all"
+    ? galleryImages
     : galleryImages.filter(img => img.category === activeCategory);
+
+  // Fallback opcional se alguma imagem quebrar
+  const handleImgError = (e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/images/placeholder.jpg"; // coloque um placeholder.jpg em /public/images/ se quiser
+  };
 
   return (
     <section id="gallery" className="py-20 bg-white">
@@ -94,8 +102,8 @@ const GallerySection = () => {
             Galeria de Projetos
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Conheça alguns dos nossos projetos de regularização realizados com sucesso. 
-            Cada projeto representa nossa dedicação em trazer segurança jurídica para 
+            Conheça alguns dos nossos projetos de regularização realizados com sucesso.
+            Cada projeto representa nossa dedicação em trazer segurança jurídica para
             nossos clientes.
           </p>
         </div>
@@ -120,16 +128,21 @@ const GallerySection = () => {
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredImages.map((image) => (
-            <Card 
-              key={image.id} 
+            <Card
+              key={image.id}
               className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover-lift"
               onClick={() => setSelectedImage(image)}
+              aria-label={`Abrir ${image.title}`}
             >
               <div className="relative aspect-square overflow-hidden">
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  onError={handleImgError}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1280px) 25vw, 20vw"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                   <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
@@ -150,7 +163,7 @@ const GallerySection = () => {
         {/* Note */}
         <div className="text-center mt-12">
           <p className="text-gray-600 italic">
-            * As imagens são representativas dos tipos de projetos que realizamos. 
+            * As imagens são representativas dos tipos de projetos que realizamos.
             Cada projeto é único e atende às necessidades específicas de cada cliente.
           </p>
         </div>
@@ -158,11 +171,17 @@ const GallerySection = () => {
 
       {/* Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedImage.title} - visualização ampliada`}
+        >
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-300"
+              aria-label="Fechar visualização"
             >
               <X className="h-8 w-8" />
             </button>
