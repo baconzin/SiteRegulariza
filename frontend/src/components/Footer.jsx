@@ -37,7 +37,7 @@ const Footer = () => {
                 <FileText className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Raphael Pascon</h3>
+                <h3 className="text-xl font-bold">Alpas</h3>
                 <p className="text-navy-200 text-sm">Regularização Condominial</p>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-navy-200">
-                © {currentYear} Raphael Pascon - Regularização Condominial. Todos os direitos reservados.
+                © {currentYear} Alpas - Regularização Condominial. Todos os direitos reservados.
               </p>
               <p className="text-sm text-navy-300 mt-1">
                 Única empresa da região especializada em regularização de documentações para condomínios e clubes.
