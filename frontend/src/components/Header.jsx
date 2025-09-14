@@ -23,7 +23,7 @@ const Header = () => {
               <FileText className="h-6 w-6 text-gold-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-navy-600">Raphael Pascon</h1>
+              <h1 className="text-xl font-bold text-navy-600">Alpas</h1>
               <p className="text-sm text-gray-600">Regularização Condominial</p>
             </div>
           </div>
