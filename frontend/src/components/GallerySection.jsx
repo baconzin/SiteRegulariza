@@ -1,110 +1,52 @@
-// src/components/GallerySection.jsx
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { X, ZoomIn } from "lucide-react";
 
-const images = [
-  {
-    id: 1,
-    src: "https://images.unsplash.com/photo-1713022643918-34bb17feb95d?auto=format&fit=crop&w=1200&q=80",
-    alt: "Condomínio Rural - Vila Moderna",
-    title: "Condomínio Rural",
-    description: "Projeto de regularização de condomínio rural com paisagem montanhosa",
-    category: "rural",
-  },
-  {
-    id: 2,
-    src: "https://images.unsplash.com/photo-1689770256234-ddfd315e3b2b?auto=format&fit=crop&w=1200&q=80",
-    alt: "Casa de Campo Regularizada",
-    title: "Casa de Campo",
-    description: "Residência rural regularizada com sucesso",
-    category: "rural",
-  },
-  {
-    id: 3,
-    src: "https://images.pexels.com/photos/10511470/pexels-photo-10511470.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    alt: "Condomínio de Cabanas",
-    title: "Condomínio de Cabanas",
-    description: "Projeto de regularização de condomínio com estilo cabana",
-    category: "rural",
-  },
-  {
-    id: 4,
-    src: "https://images.unsplash.com/photo-1532562145520-b8cce2486cd2?auto=format&fit=crop&w=1200&q=80",
-    alt: "Desenvolvimento Urbano",
-    title: "Desenvolvimento Urbano",
-    description: "Vista aérea de desenvolvimento urbano em processo de regularização",
-    category: "urban",
-  },
-];
+const GallerySection = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
 
-function GallerySection() {
-  const [selected, setSelected] = useState(null);
-  const [cat, setCat] = useState("all");
+  // Caminhos sob /public/images/gallery
+  const galleryImages = [
+    // Urbanos
+    { id: 1,  src: "/images/gallery/condominio-casas-01.jpg", alt: "Loteamento urbano com casas - vista aérea", category: "urban", title: "Condomínio Urbano",   description: "Bairro planejado com infraestrutura completa." },
+    { id: 2,  src: "/images/gallery/condominio-casas-02.jpg", alt: "Bairro planejado com ruas arborizadas",       category: "urban", title: "Bairro Planejado",     description: "Ruas pavimentadas e urbanização organizada." },
+    { id: 3,  src: "/images/gallery/condominio-casas-03.jpg", alt: "Conjunto de edifícios residenciais - aérea",  category: "urban", title: "Conjunto Residencial", description: "Condomínio com diversos blocos e áreas comuns." },
+    { id: 4,  src: "/images/gallery/condominio-casas-04.jpg", alt: "Condomínio com casas alinhadas - aérea",      category: "urban", title: "Residencial Urbano",    description: "Unidades habitacionais com infraestrutura." },
 
-  const filtered = cat === "all" ? images : images.filter(i => i.category === cat);
+    // Rurais
+    { id: 5,  src: "/images/gallery/condominio-chacaras-01.jpg", alt: "Loteamento de chácaras - aérea", category: "rural", title: "Condomínio de Chácaras", description: "Lotes amplos integrados à natureza." },
+    { id: 6,  src: "/images/gallery/condominio-chacaras-02.jpg", alt: "Chácaras próximas a lago - aérea", category: "rural", title: "Chácaras com Lago",     description: "Condomínio rural com áreas verdes e lago." },
+    { id: 7,  src: "/images/gallery/condominio-chacaras-03.jpg", alt: "Áreas rurais com residências",     category: "rural", title: "Sítios e Chácaras",      description: "Ambiente rural com baixa densidade." },
+    { id: 8,  src: "/images/gallery/condominio-chacaras-04.jpg", alt: "Projeto de loteamento com lazer",  category: "rural", title: "Loteamento com Lazer",  description: "Quadras esportivas e áreas de convivência." },
+
+    // Clubes (marcados como “urban” para manter 3 categorias)
+    { id: 9,  src: "/images/gallery/clube-vista-aerea-01.jpg", alt: "Clube à beira d'água - aérea", category: "urban", title: "Clube com Lago",   description: "Estrutura de lazer em área urbana." },
+    { id:10,  src: "/images/gallery/clube-vista-aerea-02.jpg", alt: "Complexo de clube - aérea",   category: "urban", title: "Complexo Esportivo", description: "Piscinas, quadras e campos em grande área." },
+
+    // Documentação
+    { id:11, src: "/images/gallery/projeto-urbanistico-01.png", alt: "Planta de projeto urbanístico", category: "documentation", title: "Projeto Urbanístico",      description: "Planta técnica de parcelamento do solo." },
+    { id:12, src: "/images/gallery/projeto-urbanistico-02.png", alt: "Projeto com curvas de nível",   category: "documentation", title: "Levantamento Topográfico", description: "Curvas de nível e delimitações de áreas." },
+    { id:13, src: "/images/gallery/projeto-urbanistico-03.png", alt: "Mapa técnico",                  category: "documentation", title: "Mapeamento Técnico",       description: "Zonas, matrículas e áreas verdes." },
+    { id:14, src: "/images/gallery/projeto-urbanistico-04.jpg", alt: "Estudo de loteamento",          category: "documentation", title: "Estudo de Loteamento",     description: "Memorial gráfico e legenda de convenções." },
+    { id:15, src: "/images/gallery/projeto-urbanistico-05.jpg", alt: "Masterplan de condomínio",      category: "documentation", title: "Masterplan de Condomínio", description: "Distribuição de quadras, lotes e áreas comuns." },
+    { id:16, src: "/images/gallery/projeto-urbanistico-06.jpg", alt: "Maquete do loteamento",         category: "documentation", title: "Maquete de Loteamento",    description: "Visualização geral do parcelamento." }
+  ];
+
+  const categories = useMemo(() => ([
+    { id: "all", name: "Todos",                 count: galleryImages.length },
+    { id: "rural", name: "Condomínios Rurais",  count: galleryImages.filter(i => i.category === "rural").length },
+    { id: "urban", name: "Condomínios Urbanos", count: galleryImages.filter(i => i.category === "urban").length },
+    { id: "documentation", name: "Documentação", count: galleryImages.filter(i => i.category === "documentation").length }
+  ]), []); // como galleryImages é constante, pode deixar [] aqui
+
+  const filteredImages = useMemo(() => {
+    return activeCategory === "all"
+      ? galleryImages
+      : galleryImages.filter(i => i.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <section id="gallery" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl lg:text-5xl font-bold text-navy-600 mb-4">Galeria de Projetos</h2>
-          <p className="text-gray-700 max-w-3xl mx-auto">
-            Exemplos representativos de projetos de regularização.
-          </p>
-        </div>
-
-        <div className="flex justify-center gap-3 mb-8">
-          {["all","rural","urban"].map(id => (
-            <button
-              key={id}
-              onClick={() => setCat(id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition
-                ${cat===id ? "bg-gold-500 text-white" : "bg-gray-100 hover:bg-gray-200"}`}
-            >
-              {id === "all" ? "Todos" : id === "rural" ? "Condomínios Rurais" : "Condomínios Urbanos"}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map(img => (
-            <button
-              key={img.id}
-              onClick={() => setSelected(img)}
-              className="relative group overflow-hidden rounded-lg shadow hover:shadow-lg transition"
-            >
-              <img src={img.src} alt={img.alt} className="w-full h-64 object-cover group-hover:scale-105 transition" />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-center justify-center">
-                <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                <h3 className="text-white font-semibold">{img.title}</h3>
-                <p className="text-white/90 text-sm">{img.description}</p>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {selected && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl w-full">
-            <button
-              className="absolute -top-12 right-0 text-white hover:text-gray-300"
-              onClick={() => setSelected(null)}
-            >
-              <X className="h-8 w-8" />
-            </button>
-            <img src={selected.src} alt={selected.alt} className="w-full max-h-[80vh] object-contain rounded" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent rounded-b">
-              <h4 className="text-white text-lg font-semibold">{selected.title}</h4>
-              <p className="text-white/90">{selected.description}</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-export default GallerySection;
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-b
