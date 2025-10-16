@@ -1,13 +1,24 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Building, TreePine, Users, FileCheck, MapPin, Scale } from "lucide-react";
+import { Building, TreePine, Users, FileCheck, MapPin, Scale, Navigation, FileText } from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
     {
+      icon: MapPin,
+      title: "Georeferenciamento INCRA/SIGEF",
+      description: "Georeferenciamento certificado de propriedades rurais para INCRA e SIGEF, com precisão e agilidade. Atendemos Rio Claro (SP) e região.",
+      features: [
+        "Levantamento topográfico georreferenciado",
+        "Certificação INCRA/SIGEF",
+        "Memorial descritivo e plantas",
+        "Acompanhamento até aprovação"
+      ]
+    },
+    {
       icon: TreePine,
       title: "Regularização de Condomínios Rurais",
-      description: "Especialistas em regularização de condomínios em áreas rurais, garantindo conformidade com a legislação ambiental e urbanística.",
+      description: "Especialistas em regularização de condomínios agrícolas e rurais, garantindo conformidade com legislação ambiental e fundiária.",
       features: [
         "Análise da documentação existente",
         "Adequação às normas ambientais",
@@ -16,58 +27,47 @@ const ServicesSection = () => {
       ]
     },
     {
+      icon: FileText,
+      title: "CAR e CCIR",
+      description: "Cadastro Ambiental Rural (CAR) e Certificado de Cadastro de Imóvel Rural (CCIR) para propriedades rurais em Rio Claro e região.",
+      features: [
+        "Cadastro Ambiental Rural (CAR)",
+        "Certificado CCIR",
+        "Atualização cadastral",
+        "Regularização ambiental"
+      ]
+    },
+    {
       icon: Building,
-      title: "Regularização de Condomínios Urbanos",
-      description: "Soluções completas para regularização de condomínios urbanos, incluindo adequação às normas municipais e estaduais.",
+      title: "Regularização de Loteamentos",
+      description: "Soluções completas para regularização de loteamentos urbanos e rurais, incluindo adequação às normas municipais.",
       features: [
         "Aprovação de projetos",
-        "Habite-se e licenças",
+        "Licenças e habite-se",
         "Adequação ao Código de Obras",
         "Registro de incorporação"
       ]
     },
     {
+      icon: Navigation,
+      title: "Retificação e Desmembramento",
+      description: "Serviços de retificação de áreas, desmembramento e unificação de propriedades rurais com precisão técnica.",
+      features: [
+        "Retificação de área rural",
+        "Desmembramento de propriedades",
+        "Unificação de matrículas",
+        "Levantamento topográfico"
+      ]
+    },
+    {
       icon: Users,
-      title: "Consultoria para Clubes e Loteamentos",
-      description: "Consultoria especializada para clubes, associações e loteamentos, com foco na conformidade legal e documental.",
+      title: "Clubes e Associações",
+      description: "Consultoria especializada para clubes, associações recreativas e condomínios fechados, com foco na conformidade legal.",
       features: [
         "Análise jurídica completa",
         "Adequação de estatutos",
         "Regularização fundiária",
         "Assessoria para assembleias"
-      ]
-    },
-    {
-      icon: FileCheck,
-      title: "Auditoria Documental",
-      description: "Revisão completa de toda documentação condominial para identificar pendências e irregularidades.",
-      features: [
-        "Análise de contratos",
-        "Verificação de registros",
-        "Identificação de pendências",
-        "Relatório detalhado"
-      ]
-    },
-    {
-      icon: MapPin,
-      title: "Regularização Fundiária",
-      description: "Serviços especializados em regularização fundiária para condomínios e loteamentos irregulares.",
-      features: [
-        "Levantamento topográfico",
-        "Análise da situação legal",
-        "Protocolo junto aos órgãos",
-        "Acompanhamento processual"
-      ]
-    },
-    {
-      icon: Scale,
-      title: "Assessoria Jurídica Especializada",
-      description: "Acompanhamento jurídico especializado em direito condominial e imobiliário para garantir segurança legal.",
-      features: [
-        "Pareceres jurídicos",
-        "Acompanhamento processual",
-        "Orientação preventiva",
-        "Suporte em assembleias"
       ]
     }
   ];
@@ -76,22 +76,22 @@ const ServicesSection = () => {
     {
       number: "01",
       title: "Análise Inicial",
-      description: "Avaliação completa da documentação e situação atual do empreendimento"
+      description: "Avaliação completa da documentação e situação atual da propriedade ou empreendimento"
     },
     {
       number: "02",
       title: "Diagnóstico",
-      description: "Identificação de pendências e elaboração de plano de regularização"
+      description: "Identificação de pendências e elaboração de plano de regularização customizado"
     },
     {
       number: "03",
       title: "Execução",
-      description: "Implementação das ações necessárias junto aos órgãos competentes"
+      description: "Implementação das ações necessárias junto aos órgãos competentes (INCRA, cartórios, prefeitura)"
     },
     {
       number: "04",
       title: "Finalização",
-      description: "Entrega da documentação regularizada e orientações finais"
+      description: "Entrega da documentação regularizada, certificações e orientações finais"
     }
   ];
 
@@ -99,16 +99,16 @@ const ServicesSection = () => {
     <section id="services" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-navy-600 mb-6">
-            Nossos Serviços
+        <header className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#2f5d3f] mb-6">
+            Nossos Serviços de Regularização
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Oferecemos soluções completas e especializadas para regularização 
-            de condomínios, clubes e loteamentos, garantindo segurança jurídica 
-            e conformidade legal.
+            Oferecemos soluções completas em <strong>regularização fundiária</strong>, 
+            <strong> georeferenciamento</strong>, <strong>topografia</strong> e <strong>documentação rural</strong> em 
+            <strong> Rio Claro (SP)</strong> e região, garantindo segurança jurídica e conformidade legal.
           </p>
-        </div>
+        </header>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
@@ -116,12 +116,13 @@ const ServicesSection = () => {
             <Card 
               key={index} 
               className="group hover-lift h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+              data-testid={`service-card-${index}`}
             >
               <CardHeader className="text-center pb-4">
-                <div className="bg-gold-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gold-200 transition-colors duration-300">
-                  <service.icon className="h-8 w-8 text-gold-600" />
+                <div className="bg-[#c5a572] bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c5a572] group-hover:bg-opacity-30 transition-colors duration-300">
+                  <service.icon className="h-8 w-8 text-[#2f5d3f]" />
                 </div>
-                <CardTitle className="text-xl text-navy-600 group-hover:text-navy-700 transition-colors duration-300">
+                <CardTitle className="text-xl text-[#2f5d3f] group-hover:text-[#1e3d28] transition-colors duration-300">
                   {service.title}
                 </CardTitle>
               </CardHeader>
@@ -132,7 +133,7 @@ const ServicesSection = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-sm text-gray-700">
-                      <div className="w-1.5 h-1.5 bg-gold-500 rounded-full mr-3 flex-shrink-0"></div>
+                      <div className="w-1.5 h-1.5 bg-[#c5a572] rounded-full mr-3 flex-shrink-0"></div>
                       {feature}
                     </li>
                   ))}
@@ -143,8 +144,8 @@ const ServicesSection = () => {
         </div>
 
         {/* Process Steps */}
-        <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-          <h3 className="text-3xl font-bold text-navy-600 text-center mb-12">
+        <article className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
+          <h3 className="text-3xl font-bold text-[#2f5d3f] text-center mb-12">
             Como Funciona Nosso Processo
           </h3>
           
@@ -152,16 +153,16 @@ const ServicesSection = () => {
             {processSteps.map((step, index) => (
               <div key={index} className="text-center group">
                 <div className="relative mb-6">
-                  <div className="bg-gold-500 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto text-xl font-bold group-hover:bg-gold-600 transition-colors duration-300">
+                  <div className="bg-[#c5a572] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto text-xl font-bold group-hover:bg-[#b39562] transition-colors duration-300">
                     {step.number}
                   </div>
                   {index < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-200">
-                      <div className="h-full bg-gold-300 w-0 group-hover:w-full transition-all duration-500"></div>
+                      <div className="h-full bg-[#c5a572] w-0 group-hover:w-full transition-all duration-500"></div>
                     </div>
                   )}
                 </div>
-                <h4 className="text-lg font-semibold text-navy-600 mb-2">
+                <h4 className="text-lg font-semibold text-[#2f5d3f] mb-2">
                   {step.title}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -170,7 +171,7 @@ const ServicesSection = () => {
               </div>
             ))}
           </div>
-        </div>
+        </article>
       </div>
     </section>
   );
