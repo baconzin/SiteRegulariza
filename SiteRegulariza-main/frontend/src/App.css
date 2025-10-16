@@ -1,0 +1,92 @@
+.App {
+  min-height: 100vh;
+}
+
+/* Custom Colors */
+.text-navy-600 { color: #1e3a8a; }
+.text-navy-700 { color: #1e40af; }
+.text-gold-400 { color: #fbbf24; }
+.text-gold-500 { color: #f59e0b; }
+.text-gold-600 { color: #d97706; }
+.text-gold-800 { color: #92400e; }
+
+.bg-navy-50 { background-color: #eff6ff; }
+.bg-navy-100 { background-color: #dbeafe; }
+.bg-navy-600 { background-color: #1e3a8a; }
+.bg-navy-700 { background-color: #1e40af; }
+.bg-gold-50 { background-color: #fffbeb; }
+.bg-gold-100 { background-color: #fef3c7; }
+.bg-gold-400 { background-color: #fbbf24; }
+.bg-gold-500 { background-color: #f59e0b; }
+.bg-gold-600 { background-color: #d97706; }
+
+.border-navy-300 { border-color: #93c5fd; }
+.border-gold-300 { border-color: #fcd34d; }
+
+.hover\:bg-navy-50:hover { background-color: #eff6ff; }
+.hover\:bg-gold-600:hover { background-color: #d97706; }
+.hover\:text-gold-500:hover { color: #f59e0b; }
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Glass morphism effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Typography */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Button animations */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
