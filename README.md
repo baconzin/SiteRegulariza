@@ -1,1 +1,0 @@
-Regulariza.AGR — site estático pronto para GitHub Pages (Actions).
