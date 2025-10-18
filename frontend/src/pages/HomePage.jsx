@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
 import GeoreferencingSection from "../components/GeoreferencingSection";
+import GallerySection from "../components/GallerySection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
@@ -16,6 +17,7 @@ const HomePage = () => {
         <AboutSection />
         <ServicesSection />
         <GeoreferencingSection />
+        <GallerySection />
         <ContactSection />
       </main>
       <Footer />
