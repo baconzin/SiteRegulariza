@@ -5,6 +5,8 @@ import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
 import GeoreferencingSection from "../components/GeoreferencingSection";
 import GallerySection from "../components/GallerySection";
+import TestimonialsSection from "../components/TestimonialsSection";
+import RegionsSection from "../components/RegionsSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
@@ -18,6 +20,8 @@ const HomePage = () => {
         <ServicesSection />
         <GeoreferencingSection />
         <GallerySection />
+        <TestimonialsSection />
+        <RegionsSection />
         <ContactSection />
       </main>
       <Footer />
