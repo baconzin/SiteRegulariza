@@ -1,0 +1,78 @@
+<!doctype html><html lang="pt-br"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regulariza.AGR — Regularização e Georreferenciamento Rural</title>
+<meta name="description" content="Georreferenciamento SIGEF/INCRA, retificação, desmembramento e condomínios rurais. Atendemos Rio Claro e região.">
+<link rel="icon" href="./assets/logo-regulariza.png"><link rel="stylesheet" href="./styles.css">
+</head><body><header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+    <a class="brand" href="./"><img src="./assets/logo-regulariza.png" alt="Regulariza.AGR"><strong>REGULARIZA.AGR</strong></a>
+    <nav>
+      <a href="./georreferenciamento.html">Georreferenciamento</a>
+      <a href="./orcamento.html">Orçamento</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+<section class="hero" style="min-height:360px">
+  <img class="bg" src="./assets/hero-bg.svg" alt=""><div class="shade"></div>
+  <div class="container content"><h1>Solicitar Orçamento</h1><p>Responderemos com valores por hectare, prazos e etapas.</p></div>
+</section>
+<section><div class="container grid" style="grid-template-columns:2fr 1fr">
+  <form class="card" onsubmit="toWhatsApp(event)">
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+      <div><label>Nome<br><input id="nome" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(231,241,235,.18);background:#0a1f17;color:#eaf3ec"></label></div>
+      <div><label>Cidade/UF<br><input id="cidade" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(231,241,235,.18);background:#0a1f17;color:#eaf3ec"></label></div>
+      <div><label>Área (ha)<br><input id="area" type="number" step="0.01" required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(231,241,235,.18);background:#0a1f17;color:#eaf3ec"></label></div>
+      <div><label>Objetivo<br>
+        <select id="objetivo" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(231,241,235,.18);background:#0a1f17;color:#eaf3ec">
+          <option>Georreferenciamento</option><option>Retificação</option><option>Desmembramento</option><option>Unificação</option>
+          <option>Condomínio Rural</option><option>Regularização de Clube</option>
+        </select>
+      </label></div>
+    </div>
+    <div style="margin-top:12px"><label>Detalhes<br><textarea id="detalhes" rows="5" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(231,241,235,.18);background:#0a1f17;color:#eaf3ec"></textarea></label></div>
+    <div style="margin-top:14px"><button class="btn" type="submit">Enviar via WhatsApp</button></div>
+  </form>
+  <div class="card"><h3>O que está incluso</h3>
+    <ul>
+      <li>Levantamento GNSS e memorial ABNT</li>
+      <li>ART e validação no SIGEF</li>
+      <li>Acompanhamento cartorial (quando necessário)</li>
+    </ul>
+    <p class="muted">Base em Rio Claro (SP) e atendimento regional.</p>
+  </div>
+</div></section>
+<script>
+function toWhatsApp(e){e.preventDefault();
+  var nome=document.getElementById('nome').value||'';
+  var cidade=document.getElementById('cidade').value||'';
+  var area=document.getElementById('area').value||'';
+  var objetivo=document.getElementById('objetivo').value||'';
+  var detalhes=document.getElementById('detalhes').value||'';
+  var msg=encodeURIComponent('Olá, sou '+nome+'. Cidade/UF: '+cidade+'. Área: '+area+' ha. Objetivo: '+objetivo+'. Detalhes: '+detalhes);
+  window.open('https://wa.me/5519999999999?text='+msg,'_blank');
+}
+</script>
+<footer id="contato">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="brand" style="padding:0"><img src="./assets/logo-regulariza.png" alt="Logo"><strong>REGULARIZA.AGR</strong></div>
+        Regularização & Georreferenciamento Rural<br>
+        <span class="muted">Rio Claro (SP) e região</span>
+      </div>
+      <div>
+        <div class="kicker">Links</div>
+        <a href="./georreferenciamento.html">Georreferenciamento</a><br>
+        <a href="./orcamento.html">Solicitar orçamento</a><br>
+        <a href="./sitemap.xml">Sitemap</a>
+      </div>
+      <div>
+        <div class="kicker">Contato</div>
+        WhatsApp: <a href="https://wa.me/5519999999999" target="_blank" rel="noopener">+55 (19) 99999-9999</a><br>
+        E-mail: <a href="mailto:contato@regulariza.agr.br">contato@regulariza.agr.br</a>
+      </div>
+    </div>
+    <div class="copyright">© 2025 Regulariza.AGR — Todos os direitos reservados.</div>
+  </div>
+</footer></body></html>
