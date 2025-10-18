@@ -1,0 +1,10 @@
+# Robots.txt para REGULARIZA - Regularização Fundiária e Georeferenciamento Rio Claro SP
+User-agent: *
+Allow: /
+Allow: /georreferenciamento
+
+# Sitemap
+Sitemap: https://regulariza.agr.br/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
