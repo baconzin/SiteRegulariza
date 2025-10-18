@@ -65,10 +65,24 @@
     <!-- Content Language -->
     <meta http-equiv="content-language" content="pt-BR" />
 
+    <!-- Icons and Favicons -->
     <link rel="icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/logo.png" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
-  <body>
+  <body itemscope itemtype="http://schema.org/WebPage">
     <noscript>Você precisa habilitar o JavaScript para visualizar este site.</noscript>
     <div id="root"></div>
 
